@@ -1,0 +1,118 @@
+#map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    bottom:0; 
+    right:0; 
+    left:0;
+}
+
+body { 
+    margin:0; 
+    padding:0; 
+    background:#191a1a;
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib { 
+    background-color:rgba(0,0,0,0.5); 
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib a {
+     color:#fff; 
+}
+
+#sidebar {
+    height:100%; 
+    left:0px; 
+    width:360px; 
+    color:white; 
+    overflow:scroll; 
+    overflow-x:hidden; 
+    background:#222;
+}
+
+#sidebar::-webkit-scrollbar {
+     width: 0 !important; 
+}
+
+.mapboxgl-popup-content {
+    padding:10px; background:rgba(0,0,0,0.75); color:#fff; pointer-events:none;
+}
+
+.scroller {
+    position:absolute;
+    top:87px;
+    bottom:0px;
+    overflow:scroll;
+}
+
+.mapboxgl-popup-anchor-bottom {margin-top:-10px;}
+.mapboxgl-popup-anchor-top {margin-top:10px;}
+.mapboxgl-popup-anchor-left {margin-right:-10px;}
+.mapboxgl-popup-anchor-right {margin-right:10px;}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {border-top-color:rgba(0,0,0,0.75);}
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {border-bottom-color:rgba(0,0,0,0.75);}
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {border-right-color:rgba(0,0,0,0.75);}
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {border-left-color:rgba(0,0,0,0.75);}
+
+.mapboxgl-ctrl-group {
+    -webkit-filter: invert(100%);
+}
+
+.mapboxgl-popup {pointer-events:none;}
+
+h2.mag {
+    margin-right:10px;
+    color:steelblue;
+}
+
+#restore {
+    display: none;
+}
+
+.count {color:steelblue;
+    font-size: 2.5em;
+    line-height: 1.1em;
+    text-align:center;
+    padding-right:10px;
+}
+
+.entry {height:80px; width:360px; cursor:pointer; position:relative; opacity:0.8;}
+
+.entry:hover {opacity:1;}
+
+h2 {margin:10px 10px 10px 0px; padding-bottom:0px; padding-top:0px; line-height:1em;}
+
+.translucent {opacity:0.75;}
+
+.darkback {
+    background:rgba(0,0,0,0.7);
+}
+
+.code {
+    padding:2px 5px;
+}
+
+.loader {
+    background:rgba(0,0,0,0.7);
+    width:100%;
+    height:100%;
+    color:white;
+    position:absolute;
+    text-align: center;
+    line-height: 9em;
+    font-size:2em;
+    z-index:999;
+}
+
+@media (max-width: 600px) {
+    #sidebar {
+        display: none;
+    }
+
+    #map {
+        left:0px;
+    }
+}
