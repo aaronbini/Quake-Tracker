@@ -1,5 +1,5 @@
 
-
+var mouseRadius = 15;
 //refactor this code using moment possibly
 function expressTime(time){
   var msElapsed = Date.now() - time;
@@ -151,7 +151,7 @@ map.on('load', function(err, res){
     var targetLayer = 'smalldot';
     var feature = map.queryRenderedFeatures([[e.point.x-mouseRadius,e.point.y-mouseRadius],[e.point.x+mouseRadius,e.point.y+mouseRadius]], {layers:[targetLayer]})[0];
     console.log(feature);
-    if (feature) map.getCanvas().style.cursor = 'pointer' ;
+    if (feature) map.getCanvas().style.cursor = 'pointer';
     else {
       map.getCanvas().style.cursor = 'pointer';
       removePopup();
