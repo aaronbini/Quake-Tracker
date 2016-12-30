@@ -1,0 +1,15 @@
+<section ng-class="$ctrl.styles.sidenav">
+  <md-content>
+    <md-card class="sidebar">
+      <h4>Number of Quakes: {{$ctrl.quakes.features.length}}</h4>
+      <md-input-container style="padding-top: 25px;">
+        <md-select ng-model="$ctrl.range" placeholder="Range">
+          <md-option ng-value="range" ng-repeat="range in $ctrl.dates">{{range}}</md-option>
+        </md-select>
+      </md-input-container>
+      <md-button ng-click="$ctrl.callQuery($ctrl.range)">Select Time Frame</md-button>
+      <div class="scroller">
+      </div>
+    </md-card>
+  </md-content>
+</section>

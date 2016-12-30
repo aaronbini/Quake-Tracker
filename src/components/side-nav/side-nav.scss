@@ -1,0 +1,31 @@
+:local(.sidenav) {
+
+    height: 100%;
+    width: 35%;
+
+    md-content {
+        display: inline;
+    }
+
+    .sidebar {
+        height:100%; 
+        left:0px; 
+        width:100%;
+        overflow:scroll; 
+        overflow-x:hidden; 
+        margin-top: 0px;
+        margin-left: 0px;
+        z-index: 1;
+    }
+
+    .sidebar::-webkit-scrollbar {
+        width: 0 !important; 
+    }
+
+    .scroller {
+        position:absolute;
+        top:87px;
+        bottom:0px;
+        overflow:scroll;
+    }
+}

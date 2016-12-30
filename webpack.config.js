@@ -1,6 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+// create an output file to extract to via:
+const cssExtract = new ExtractTextPlugin('main.css');
+
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -12,7 +15,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new ExtractTextPlugin('/styles/bundle.css')
+    cssExtract
   ],
   module: {
     preLoaders: [{
@@ -28,16 +31,18 @@ module.exports = {
         // presets: ['es2015'],
         cacheDirectory: true
       }
-    },
-    {
+    },{
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style!',
-      'css?sourceMap!sass?sourceMap')
-    },
-    {
+      loader: cssExtract.extract(
+          'style-loader',
+          'css-loader?sourceMap!sass-loader?sourceMap'
+      )	
+    },{
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style!',
-      'css')
+      loader: cssExtract.extract(
+          'style-loader',
+          'css-loader'
+      )	
     },
     {
       test: /\.html$/,
@@ -45,6 +50,6 @@ module.exports = {
     }]
   },
   sassLoader: {
-    includePaths: ['./src/scss/includes']
+    includePaths: ['./src/scss']
   }
 };
