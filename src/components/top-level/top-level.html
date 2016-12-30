@@ -1,2 +1,9 @@
-<map ng-if="$ctrl.quakes" quakes="$ctrl.quakes"></map>
-<side-nav ng-if="$ctrl.quakes" quakes="$ctrl.quakes" query="$ctrl.queryNewRange"></side-nav>
+<!--<div ng-class="$ctrl.styles.top-level">-->
+  <p class="error">{{$ctrl.errorMessage}}</p>
+  <map ng-if="$ctrl.quakes" quakes="$ctrl.quakes"></map>
+  <side-nav ng-if="$ctrl.quakes" 
+            quakes="$ctrl.quakes" 
+            query-location="$ctrl.queryLocation" 
+            query="$ctrl.queryNewRange">
+  </side-nav>
+<!--</div>-->

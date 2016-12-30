@@ -8,8 +8,30 @@
         </md-select>
       </md-input-container>
       <md-button ng-click="$ctrl.callQuery($ctrl.range)">Select Time Frame</md-button>
-      <div class="scroller">
-      </div>
+      <md-input-container>
+        <label>Go To Location:</label>
+        <input type="text" ng-model="$ctrl.location" required>
+      </md-input-container>
+      <md-button ng-click="$ctrl.goToLocation($ctrl.location, 8)">Re-Center Map</md-button>
+      <h4>Click Here to go home (Pacific NW)</h4>
+      <md-button ng-click="$ctrl.goToLocation(null, 5)">Pac NW</md-button>
+      <h4>Check stats by state:</h4>
+      <md-input-container style="padding-top: 25px;">
+        <md-select ng-model="$ctrl.state" placeholder="Range">
+          <md-option ng-value="state" ng-repeat="state in $ctrl.states">{{range}}</md-option>
+        </md-select>
+      </md-input-container>
+      <md-list ng-if="$ctrl.stats" flex>
+        <md-subheader class="md-no-sticky">5 Largest Quakes in or Near {{$ctrl.currentState}}</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="quake in $ctrl.topFive" ng-click="null">
+          <div class="md-list-item-text" layout="column">
+            <h3>Mag: {{ quake.mag }}</h3>
+            <h4>Location: {{ quake.location }}</h4>
+            <p>Occurred: {{ quake.when | date: 'MM DD YYYY' }}</p>
+          </div>
+          <md-divider ></md-divider>
+        </md-list-item>
+      </md-list>
     </md-card>
   </md-content>
 </section>

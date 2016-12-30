@@ -11,8 +11,10 @@ const app = angular.module('quakeTracker', [
   md
 ]);
 
+app.constant('mapToken', process.env.MAPBOX_TOKEN || 'pk.eyJ1IjoiYWFyb25iaW5pIiwiYSI6ImNpcHU3ajc2cjA5eGNmbG0yZmh2a2Fud3EifQ.bMYgeUt9yYRmG3Za0B9lSw');
+
 app.config(['$mdThemingProvider', function($mdThemingProvider){
-  $mdThemingProvider.theme('default')
+  $mdThemingProvider.theme('forest')
     .primaryPalette('teal')
     .accentPalette('deep-orange')
     .backgroundPalette('teal')

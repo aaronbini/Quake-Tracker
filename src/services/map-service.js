@@ -1,6 +1,7 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 
-export default function mapService () {
+mapService.$inject = ['$http', 'mapToken'];
+export default function mapService ($http, mapToken) {
   
   const mapStyles = [
     'mapbox://styles/mapbox/streets-v9',
@@ -11,15 +12,20 @@ export default function mapService () {
     'mapbox://styles/mapbox/satellite-streets-v9'
   ];
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyb25iaW5pIiwiYSI6ImNpcHU3ajc2cjA5eGNmbG0yZmh2a2Fud3EifQ.bMYgeUt9yYRmG3Za0B9lSw';
+  mapboxgl.accessToken = mapToken;
 
-  // function addSource () {
+  // const geocodingURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
 
-  // }
+  //https://api.mapbox.com/geocoding/v5/mapbox.places/Chester.json?country=us&access_token=pk.my-token-value
+
+  function geocode (location) {
+    return $http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?country=us&access_token=${mapToken}`)
+      .then(res => res.data);
+  }
 
   return {
     mapboxgl,
     mapStyles,
-
+    geocode
   };
 };
