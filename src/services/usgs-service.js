@@ -37,16 +37,17 @@ export default function usgsService ($http) {
 
     quakesByState (data, state, statesObj) {
       return data.features.filter(quake => {
-        let lowerState;
+        //lowercase the state
+        let lowerState = state.toLowerCase();
         let locationArray = quake.properties.place.split(', ');
         //get location of quake from place property
-        let place = locationArray[locationArray.length - 1].toLowerCase();
-        let index = statesObj.abbrevs.indexOf(place);
-        //if it is an abbrev set it to the corresponding full state name
+        let place = locationArray[locationArray.length - 1].toUpperCase();
+        let index = statesObj.states.indexOf(place);
+        //if it is a full state name set it to the corresponding abbrev
         if (index > -1) {
-          lowerState = statesObj.states[index].toLowerCase();
+          place = statesObj.abbrevs[index].toLowerCase();
         } else {
-          lowerState = state.toLowerCase();
+          place = place.toLowerCase();
         }
         //return the quake if it corresponds to the state requested
         return place === lowerState;

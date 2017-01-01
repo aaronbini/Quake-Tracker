@@ -1,33 +1,46 @@
 <section ng-class="$ctrl.styles.sidenav">
   <md-content>
     <md-card class="sidebar">
-      <h4>Number of Quakes: {{$ctrl.quakes.features.length}}</h4>
-      <md-input-container style="padding-top: 25px;">
-        <md-select ng-model="$ctrl.range" placeholder="Range">
-          <md-option ng-value="range" ng-repeat="range in $ctrl.dates">{{range}}</md-option>
-        </md-select>
-      </md-input-container>
-      <md-button ng-click="$ctrl.callQuery($ctrl.range)">Select Time Frame</md-button>
+      <h3>Earthquakes worldwide in the last 
+        <span class="range-color">{{$ctrl.range}}</span> : 
+        <span class="accent-color">{{$ctrl.quakes.features.length}}</span></h3>
+       <md-divider ></md-divider>
       <md-input-container>
-        <label>Go To Location:</label>
-        <input type="text" ng-model="$ctrl.location" required>
-      </md-input-container>
-      <md-button ng-click="$ctrl.goToLocation($ctrl.location, 8)">Re-Center Map</md-button>
-      <h4>Click Here to go home (Pacific NW)</h4>
-      <md-button ng-click="$ctrl.goToLocation(null, 5)">Pac NW</md-button>
-      <h4>Check stats by state:</h4>
-      <md-input-container style="padding-top: 25px;">
-        <md-select ng-model="$ctrl.state" placeholder="Range">
-          <md-option ng-value="state" ng-repeat="state in $ctrl.states">{{range}}</md-option>
+        <h3>Select A Different Time Frame:</h3>
+        <md-select ng-model="$ctrl.range" placeholder="Range" class="md-accent" ng-change="$ctrl.callQuery($ctrl.range)">
+          <md-option class="md-accent" ng-value="range" ng-repeat="range in $ctrl.dates">{{range}}</md-option>
         </md-select>
       </md-input-container>
-      <md-list ng-if="$ctrl.stats" flex>
-        <md-subheader class="md-no-sticky">5 Largest Quakes in or Near {{$ctrl.currentState}}</md-subheader>
-        <md-list-item class="md-3-line" ng-repeat="quake in $ctrl.topFive" ng-click="null">
+      <md-divider style="margin-bottom: 40px;"></md-divider>
+      <div class="fly-container">
+        <md-input-container class="flex-input">
+          <input type="text" ng-model="$ctrl.location" placeholder="Check activity in another location:" required>
+        </md-input-container>
+        <md-button class="flex-button" ng-click="$ctrl.goToLocation($ctrl.location, 7)">Go</md-button>
+      </div>
+      <md-divider style="margin-bottom: 20px;"></md-divider>
+      <md-button ng-if="$ctrl.traveled" style="width: 60%;" ng-click="$ctrl.goToLocation(null, 5)">Go Back to Pacific NW</md-button>
+      <h3>Check stats by state:</h3>
+      <p class="center">
+        <span class="accent-color">{{$ctrl.stateQuakes.length}}</span> 
+        earthquakes in <span class="state-color">{{$ctrl.fullState}}</span> 
+        in the last <span class="range-color">{{$ctrl.range}}</span>
+      </p>
+      <md-input-container style="padding-top: 25px; margin-bottom: 10px;">
+        <md-select ng-change="$ctrl.updateState($ctrl.state, $ctrl.quakes)" ng-model="$ctrl.state" placeholder="Select State:">
+          <md-option ng-value="state" ng-repeat="state in $ctrl.states">{{state}}</md-option>
+        </md-select>
+      </md-input-container>
+      <md-list ng-if="$ctrl.topFive.length" flex>
+        <h3 style="margin-top: 0px; margin-bottom: 0px;" class="md-no-sticky">
+          {{$ctrl.topFive.length}} largest earthquakes in or near <span class="state-color">{{$ctrl.fullState}}</span>
+        </h3>
+        <md-list-item class="md-2-line" ng-repeat="quake in $ctrl.topFive">
           <div class="md-list-item-text" layout="column">
-            <h3>Mag: {{ quake.mag }}</h3>
-            <h4>Location: {{ quake.location }}</h4>
-            <p>Occurred: {{ quake.when | date: 'MM DD YYYY' }}</p>
+            <h4>Date: <span class="range-color">{{ quake.properties.time | date: 'shortDate' }}</span>
+             || Magnitude: <span class="accent-color">{{ quake.properties.mag }}</span>
+            </h4>
+            <h4>Location: {{ quake.properties.place }}</h4>
           </div>
           <md-divider ></md-divider>
         </md-list-item>

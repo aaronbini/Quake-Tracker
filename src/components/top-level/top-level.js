@@ -35,7 +35,7 @@ function controller (usgs, $rootScope, mapService) {
         });
     } else {
       this.errorMessage = null;
-      $rootScope.$broadcast('location', {location: [ -125.7, 43.5 ], zoom});
+      $rootScope.$broadcast('location', {location: [ -125.7, 44.5 ], zoom});
     }
   };
 
