@@ -1,10 +1,112 @@
+//add includes for colors
 :local(.sidenav) {
 
     height: 100%;
-    width: 35%;
+    width: 37%;
 
     md-content {
         display: inline;
+    }
+
+    md-card h3, h4 {
+        padding: 10px;
+        text-align: center;
+        font-weight: normal;
+        // margin-top: 1px;
+        // margin-bottom: 1px;
+    }
+
+    md-input-container {
+        width: 75%;
+        margin: auto;
+        margin-bottom: 40px;
+    }
+
+    md-divider {
+        border-top-width: 2px;
+        width: 98%;
+        border-top-color: rgba(0,0,0,0.3);
+        margin: auto;
+    }
+
+    md-list-item:hover {
+        background-color: rgba(76,175,80,0.2);
+    }
+
+    md-list-item md-divider {
+        left: 1;
+    }
+
+    md-list-item h3, h4 {
+        text-align: center;
+        padding: 2px;
+    }
+
+    md-select {
+        width: 60%;
+        margin: auto;
+
+        span {
+            text-align: center;
+        }
+    }
+
+    .md-list-item-text {
+        text-align: left;
+    }
+
+    .md-button {
+        background-color: rgba(255,61,0, 0.5);
+        // background-color: rgba(76,175,80,0.4);
+        margin: auto;
+
+        &:hover {
+            background-color: rgba(255,61,0, 0.6);
+        }
+    }
+
+    .fly-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 60px;
+    }
+
+    .flex-input {
+        width: 65%;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .flex-button {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    
+    .md-subheader {
+        //background
+        background-color: rgb(185,246,202);
+    }
+
+    .accent-color {
+        color: rgb(255,61,0);
+    }
+
+    .range-color {
+        color: green;
+    }
+
+    .state-color {
+        color: saddlebrown;
+    }
+
+    #select_container_6 {
+        min-width: 100px !important;
+    }
+
+    .center {
+        margin: auto;
+        text-align: center;
     }
 
     .sidebar {

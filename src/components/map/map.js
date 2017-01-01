@@ -22,6 +22,9 @@ function controller (mapService, $rootScope) {
     closeButton: false,
     closeOnClick: false,
   });
+
+  mapService.geocode('Vancouver, WA')
+    .then(location => console.log('geocoded: ', location.features[0].center));
   
   this.map = new mapService.mapboxgl.Map({
     container: element,
@@ -62,6 +65,20 @@ function controller (mapService, $rootScope) {
         type: 'geojson',
         data: data.quakes
       });
+    });
+
+    $rootScope.$on('location', (e, data) => {
+      this.map.flyTo({
+        center: data.location,
+        zoom: data.zoom,
+        speed: 0.9,
+        curve: 1,
+        easing(t) {
+          return t;
+        }
+      });
+      // this.map.setCenter(data.location);
+      // this.map.setZoom(8);
     });
 
     this.map.on('mousemove', (e) => {
