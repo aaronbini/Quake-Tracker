@@ -14,15 +14,12 @@ export default function mapService ($http, mapToken) {
 
   mapboxgl.accessToken = mapToken;
 
-  // const geocodingURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
-
-  //https://api.mapbox.com/geocoding/v5/mapbox.places/Chester.json?country=us&access_token=pk.my-token-value
-
   function geocode (location) {
     return $http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?&access_token=${mapToken}`)
       .then(res => res.data);
   }
 
+  //unused for now but will incorporate later
   function calculateDistance(lat1,lon1,lat2,lon2) {
     const radius = 6371; // Radius of the earth in km
     const dLat = deg2rad( lat2 - lat1 );  // deg2rad below

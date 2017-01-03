@@ -37,6 +37,7 @@ function controller (usgs, $rootScope) {
 
   this.goToLocation = (location, zoom) => {
     //call parent-level method
+    console.log('go to location');
     this.queryLocation(location, zoom);
     this.location = '';
     this.traveled = !this.traveled;
