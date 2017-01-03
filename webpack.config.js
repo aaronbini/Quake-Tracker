@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
 
 // create an output file to extract to via:
 const cssExtract = new ExtractTextPlugin('main.css');
@@ -7,7 +8,7 @@ const cssExtract = new ExtractTextPlugin('main.css');
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: './build',
+    path: '../map-project-server/public',
     filename: 'bundle.js'
   },
   devtool: 'source-map',
@@ -15,6 +16,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
+    new EnvironmentPlugin(['MAPBOX_TOKEN']),
     cssExtract
   ],
   module: {
